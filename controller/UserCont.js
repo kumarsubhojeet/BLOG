@@ -82,6 +82,28 @@ const deleteUser = asyncHandler(async (req, res) =>{
   }
 } )
 
+// -------------- Fetch Single User //---------------
+
+const UserDetails = asyncHandler(async (req, res) => {
+  const {id} = req.params
+//checking user id is valid or not
+ValidateID(id);
+
+try {
+  const userDetail = await UserModel.findById(id)
+  res.send(userDetail)
+} catch (error) {
+  res.send(error)
+}
+
+})
 
 
-module.exports = { userRegister, LoginUser , fetchUsers , deleteUser };
+module.exports = { 
+  userRegister
+  , LoginUser 
+  , fetchUsers 
+  , deleteUser 
+  ,UserDetails
+
+};
